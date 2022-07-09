@@ -32,7 +32,7 @@ class DBConnect {
     final db = await database;
 
     await db.insert(
-      'Private_list',
+      'todo',
       private_list.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
@@ -41,7 +41,7 @@ class DBConnect {
   Future<void> deleteTodo(Private_list, private_list) async {
     final db = await database;
     await db.delete(
-      'private_list',
+      'todo',
       where: 'id == ?',
       whereArgs: [private_list.id],
     );
@@ -51,13 +51,13 @@ class DBConnect {
     final db = await database;
 
     List<Map<String, dynamic>> items = await db.query(
-      'private_list',
+      'todo',
       orderBy:  'id DESC',
     );
     return List.generate(items.length, (i) => Private_list(
       id: items[i]['id'],
       title: items[i]['title'],
-      creationDate: items[i]['creationDate'],
+      creationDate:DateTime.parse(items[i]['creationDate']),
       isDone: items[i]['isDone'] == 1 ? true : false,
       ));
   }
