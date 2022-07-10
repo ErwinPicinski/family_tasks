@@ -28,6 +28,7 @@ class DBConnect {
     ''');
   }
 
+
   Future<void> insertTodo(Private_list private_list) async {
     final db = await database;
 
@@ -38,7 +39,7 @@ class DBConnect {
     );
   }
 
-  Future<void> deleteTodo(Private_list, private_list) async {
+  Future<void> deleteTodo(Private_list private_list) async {
     final db = await database;
     await db.delete(
       'todo',
